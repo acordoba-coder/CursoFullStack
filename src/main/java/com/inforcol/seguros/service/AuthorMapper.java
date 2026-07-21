@@ -1,8 +1,8 @@
 package com.inforcol.seguros.service;
 
-import com.inforcol.seguros.dto.AuthorDetailDto;
-import com.inforcol.seguros.dto.AuthorRequestDto;
-import com.inforcol.seguros.dto.AuthorResponseDto;
+import com.inforcol.seguros.dto.author.AuthorDetailDto;
+import com.inforcol.seguros.dto.author.AuthorRequestDto;
+import com.inforcol.seguros.dto.author.AuthorResponseDto;
 import com.inforcol.seguros.dto.BookSimpleDto;
 import com.inforcol.seguros.model.Author;
 import com.inforcol.seguros.model.AuthorDetail;

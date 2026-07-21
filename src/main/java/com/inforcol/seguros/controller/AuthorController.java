@@ -1,7 +1,7 @@
 package com.inforcol.seguros.controller;
 
-import com.inforcol.seguros.dto.AuthorRequestDto;
-import com.inforcol.seguros.dto.AuthorResponseDto;
+import com.inforcol.seguros.dto.author.AuthorRequestDto;
+import com.inforcol.seguros.dto.author.AuthorResponseDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

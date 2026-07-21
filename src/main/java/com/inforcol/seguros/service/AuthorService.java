@@ -3,16 +3,13 @@ package com.inforcol.seguros.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.inforcol.seguros.dto.AuthorRequestDto;
-import com.inforcol.seguros.dto.AuthorResponseDto;
+import com.inforcol.seguros.dto.author.AuthorRequestDto;
+import com.inforcol.seguros.dto.author.AuthorResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.inforcol.seguros.dto.AuthorDTO;
 import com.inforcol.seguros.model.Author;
-import com.inforcol.seguros.model.Book;
 import com.inforcol.seguros.repository.AuthorRepository;
-import com.inforcol.seguros.repository.BookRepository;
 
 
 @Service

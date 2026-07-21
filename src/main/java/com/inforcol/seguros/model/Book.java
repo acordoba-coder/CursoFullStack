@@ -38,6 +38,11 @@ public class Book {
     )
     private List<Category> categories;
 
+    public Object getCodigo() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCodigo'");
+    }
+
 }
 
 
