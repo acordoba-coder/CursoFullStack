@@ -2,15 +2,12 @@ package com.inforcol.seguros.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -22,14 +19,24 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
-    private String titulo;
+    @Column(nullable = false)
+    private String title;
 
-    private String codigo;
+    private String isbn;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id")
-    @JsonBackReference
+    private Double price;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "author_id", nullable = false)
     private Author author;
+
+    @ManyToMany
+    @JoinTable(
+            name = "book_category",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<Category> categories;
 
 }
 

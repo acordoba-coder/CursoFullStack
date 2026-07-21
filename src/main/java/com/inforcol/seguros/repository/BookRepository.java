@@ -8,5 +8,4 @@ import com.inforcol.seguros.model.Book;
 
 public interface BookRepository extends JpaRepository <Book, Long> {
 
-    List<Book> findByTituloContainingIgnoreCase(String titulo);
 }

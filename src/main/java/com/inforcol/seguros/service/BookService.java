@@ -3,6 +3,12 @@ package com.inforcol.seguros.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.inforcol.seguros.dto.BookRequestDto;
+import com.inforcol.seguros.dto.BookResponseDto;
+import com.inforcol.seguros.model.Author;
+import com.inforcol.seguros.model.Category;
+import com.inforcol.seguros.repository.AuthorRepository;
+import com.inforcol.seguros.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,48 +19,39 @@ import com.inforcol.seguros.repository.BookRepository;
 public class BookService {
 
     @Autowired
-    private BookRepository BookRepository;
+    private BookRepository bookRepository;
 
-    public BookService(BookRepository BookRepository) {
-        this.BookRepository = BookRepository;
+    @Autowired
+    private AuthorRepository authorRepository;
+
+    @Autowired
+    private CategoryRepository categoryRepository;
+
+    @Autowired
+    private BookMapper bookMapper;
+
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
-    
-    public Book createbook( Book book){
-        return this.BookRepository.save(book);
+    public BookResponseDto createBook(BookRequestDto dto) {
+        // 1. Buscar al Autor
+        Author author = authorRepository.findById(dto.getAuthorId())
+                .orElseThrow(() -> new RuntimeException("Autor no encontrado con ID: " + dto.getAuthorId()));
+
+        // 2. Buscar las Categorías
+        List<Category> categories = categoryRepository.findAllById(dto.getCategoryIds());
+
+        // 3. Crear entidad y asignar relaciones
+        Book book = new Book();
+        book.setTitle(dto.getTitle());
+        book.setIsbn(dto.getIsbn());
+        book.setPrice(dto.getPrice());
+        book.setAuthor(author);
+        book.setCategories(categories);
+
+        return bookMapper.toDto(bookRepository.save(book));
     }
-
-    // READ (todos)
-    public List<Book> listBooks() {
-        return BookRepository.findAll();
-    }
-
-    // READ (uno por id)
-    public Optional<Book> getBookById(Long id) {
-        return BookRepository.findById(id);
-    }
-
-    // READ (uno por titulo)
-    public List<Book> getBookByTitulo(String titulo) {
-        return BookRepository.findByTituloContainingIgnoreCase(titulo);
-    }
-
-    // DELETE
-    public void deleteBook(Long id) {
-        BookRepository.deleteById(id);
-    }
-
-    // UPDATE
-    public Book updateBook(Long id, Book newBookData) {
-        Book book = BookRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Product not found with id: " + id));
-
-        book.setTitulo(newBookData.getTitulo());
-        book.setCodigo(newBookData.getCodigo());
-
-        return BookRepository.save(book);
-    }
-
 
 
 }

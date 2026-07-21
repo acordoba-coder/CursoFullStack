@@ -1,11 +1,9 @@
 package com.inforcol.seguros.repository;
 
+import com.inforcol.seguros.model.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.inforcol.seguros.model.Author;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AuthorRepository extends JpaRepository<Author, Long> {
-
+public interface CategoryRepository extends JpaRepository<Category, Long> {
 }

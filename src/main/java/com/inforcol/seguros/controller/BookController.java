@@ -2,7 +2,10 @@ package com.inforcol.seguros.controller;
 
 import java.util.List;
 
+import com.inforcol.seguros.dto.BookRequestDto;
+import com.inforcol.seguros.dto.BookResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,55 +34,11 @@ public class BookController {
     }
 
 
-    @GetMapping
-    public ResponseEntity<List<Book>> getBook(){
-        log.info("BookController -> getBook");
-        return ResponseEntity.ok(this.bookService.listBooks());
-    }
-
-    @PostMapping("/create")
-    public ResponseEntity<Book> create(@RequestBody Book book) {
-        // Logic to save the product to the database
-        Book savedProduct = this.bookService.createbook(book);
-        log.info("BookController -> Create {}", book);
-        return ResponseEntity.ok(savedProduct);
-    }
-
-    @GetMapping("filterid/{id}")
-    public ResponseEntity<Book> obtenerPorId(@RequestParam  Long id) {
-        log.info("BookController -> ObtenerPorId {}", bookService.getBookById(id));
-        return bookService.getBookById(id)
-                .map(ResponseEntity::ok) 
-                .orElse(ResponseEntity.notFound().build()); 
-    } 
-
-    @GetMapping("/filtertt/{titulo}")
-    public ResponseEntity<List<Book>> obtenerPorTitulo(@RequestParam String titulo) {
-        List<Book> books = bookService.getBookByTitulo(titulo);
-
-        log.info("BookController -> obtenerPorTitulo {}", books);
-
-        if (books.isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
-
-        return ResponseEntity.ok(books);
-    } 
-
-     
-    @PutMapping("edit/{id}")
-    public ResponseEntity<Book> actualizar(@PathVariable Long id, @RequestBody Book book) {
-        Book updatedProduct = bookService.updateBook(id, book);
-        log.info("BookController -> actualizar {}", bookService.updateBook(id, book));
-        return ResponseEntity.ok(updatedProduct); 
-    }
-
-    
-    @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        bookService.deleteBook(id);
-        log.info("BookController -> eliminar");
-        return ResponseEntity.noContent().build(); 
+    // CREATE: POST /api/books
+    @PostMapping
+    public ResponseEntity<BookResponseDto> createBook(@RequestBody BookRequestDto dto) {
+        BookResponseDto response = bookService.createBook(dto);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
 }
