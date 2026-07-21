@@ -1,6 +1,5 @@
 package com.inforcol.seguros.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

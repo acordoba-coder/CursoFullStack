@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.inforcol.seguros.model.Book;
 import com.inforcol.seguros.service.BookService;
 import lombok.extern.slf4j.Slf4j;
 
@@ -57,7 +56,7 @@ public class BookController {
         return ResponseEntity.ok(this.bookService.listBooks());
     }
 
-     @GetMapping("filterid/{id}")
+    @GetMapping("filterid/{id}")
     public ResponseEntity<BookResponseDto> obtenerPorId(@RequestParam  Long id) {
         log.info("BookController -> ObtenerPorId {}", bookService.getBookById(id));
         return bookService.getBookById(id)

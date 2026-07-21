@@ -11,12 +11,10 @@ import com.inforcol.seguros.model.Category;
 import com.inforcol.seguros.repository.AuthorRepository;
 import com.inforcol.seguros.repository.CategoryRepository;
 
-import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
+
 
 import com.inforcol.seguros.model.Book;
 import com.inforcol.seguros.repository.BookRepository;

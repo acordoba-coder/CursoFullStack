@@ -1,6 +1,8 @@
 package com.inforcol.seguros.dto.author;
 
 import com.inforcol.seguros.dto.BookSimpleDto;
+import com.inforcol.seguros.model.AuthorDetail;
+
 import lombok.Data;
 
 import java.util.List;
