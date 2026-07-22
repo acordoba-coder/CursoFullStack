@@ -1,4 +1,4 @@
-package com.inforcol.cotizacion.DTO;
+package com.inforcol.cotizacion.dto;
 
 public class DeducibleRequestDTO {
 
