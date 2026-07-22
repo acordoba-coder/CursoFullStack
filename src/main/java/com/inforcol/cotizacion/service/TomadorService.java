@@ -21,15 +21,12 @@ public class TomadorService {
 
     // CREATE
     public TomadorResponseDto create(TomadorRequestDto dto){
-
         Tomador tomador = convertToEntity(dto);
-
         return convertToDTO(repository.save(tomador));
     }
 
     // READ
     public List<TomadorResponseDto> list(){
-
         return repository.findAll()
                 .stream()
                 .map(this::convertToDTO)
@@ -38,16 +35,13 @@ public class TomadorService {
 
     // READ ID
     public TomadorResponseDto getById(String cc){
-
         Tomador tomador = repository.findById(cc)
                 .orElseThrow(() -> new RuntimeException("Tomador no encontrado"));
-
         return convertToDTO(tomador);
     }
 
     // READ NOMBRE
     public List<TomadorResponseDto> getByNombre(String nombre){
-
         return repository.findByNombreTomadorContainingIgnoreCase(nombre)
                 .stream()
                 .map(this::convertToDTO)
@@ -56,7 +50,6 @@ public class TomadorService {
 
     // UPDATE
     public TomadorResponseDto update(String cc, TomadorRequestDto dto){
-
         Tomador tomador = repository.findById(cc)
                 .orElseThrow(() -> new RuntimeException("Tomador no encontrado"));
 
@@ -74,12 +67,11 @@ public class TomadorService {
 
     // DELETE
     public void delete(String cc){
-
         repository.deleteById(cc);
     }
 
     private TomadorResponseDto convertToDTO(Tomador t){
-
+        
         TomadorResponseDto dto = new TomadorResponseDto();
 
         dto.setCcTomador(t.getCcTomador());
