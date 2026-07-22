@@ -8,6 +8,7 @@ public class CotizacionApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CotizacionApplication.class, args);
+		
 	}
 
 }
