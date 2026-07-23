@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
+//import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import lombok.Data;
@@ -39,7 +39,7 @@ public class Tomador {
     @Column(name = "tip_persona")
     private String tipPersona;
 
-    //@OneToOne(mappedBy = "tomador")
+    //@OneToMany(mappedBy = "tomador")
     //private DatosRiesgo datosRiesgo;
     
 }
