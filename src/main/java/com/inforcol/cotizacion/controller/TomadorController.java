@@ -10,6 +10,7 @@ import com.inforcol.cotizacion.dto.dtotomadores.TomadorRequestDto;
 import com.inforcol.cotizacion.dto.dtotomadores.TomadorResponseDto;
 import com.inforcol.cotizacion.service.TomadorService;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -28,7 +29,7 @@ public class TomadorController {
 
 
     @PostMapping
-    public ResponseEntity<TomadorResponseDto> create(@RequestBody TomadorRequestDto dto){
+    public ResponseEntity<TomadorResponseDto> create(@Valid @RequestBody TomadorRequestDto dto){
         log.info("TomadorController -> create {}", dto);
         return new ResponseEntity<>(service.create(dto), HttpStatus.CREATED);
     }
@@ -52,7 +53,7 @@ public class TomadorController {
     }
 
     @PutMapping("/{cc}")
-    public ResponseEntity<TomadorResponseDto> update(@PathVariable String cc, @RequestBody TomadorRequestDto dto){
+    public ResponseEntity<TomadorResponseDto> update(@Valid @PathVariable String cc, @RequestBody TomadorRequestDto dto){
         log.info("TomadorController -> update {}", service.update(cc, dto));                                                
         return ResponseEntity.ok(service.update(cc, dto));
     }
