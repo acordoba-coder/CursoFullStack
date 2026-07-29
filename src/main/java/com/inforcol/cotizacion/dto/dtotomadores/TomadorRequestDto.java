@@ -7,12 +7,17 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class TomadorRequestDto {
 
     @NotBlank(message = "La cédula es obligatoria")
+    @Pattern(
+    regexp = "^([0-9]{8}|[0-9]{10})$",
+    message = "La cédula debe tener 8 o 10 dígitos"
+    )
     private String ccTomador;
 
     @NotBlank(message = "El nombre es obligatorio")
@@ -34,6 +39,7 @@ public class TomadorRequestDto {
     private LocalDate fecNacimiento;
 
     @NotBlank(message = "La ocupación es obligatoria")
+    @Size(min = 3, max = 100, message = "La ocupación debe tener entre 3 y 100 caracteres")
     private String ocupacion;
 
     @NotBlank(message = "La dirección es obligatoria")
