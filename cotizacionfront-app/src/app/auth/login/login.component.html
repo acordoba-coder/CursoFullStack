@@ -1,0 +1,9 @@
+<h2>Iniciar sesion</h2>
+<p>Sesion simulada: cualquier nombre de usuario sirve, no hay contrasena.</p>
+
+<form (ngSubmit)="login()">
+  <label for="username">Usuario</label>
+  <input id="username" type="text" [formControl]="usernameControl" placeholder="Ej: javier">
+
+  <button type="submit" [disabled]="usernameControl.invalid" (click)="login()">Entrar</button>
+</form>

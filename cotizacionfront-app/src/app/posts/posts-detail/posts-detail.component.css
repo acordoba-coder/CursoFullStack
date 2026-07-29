@@ -1,0 +1,20 @@
+.back-link {
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.post-body {
+  line-height: 1.5;
+}
+
+.author {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.author h4 {
+  margin: 0 0 0.5rem;
+}

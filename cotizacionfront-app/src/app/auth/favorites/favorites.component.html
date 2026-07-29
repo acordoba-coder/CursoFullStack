@@ -1,0 +1,15 @@
+<h2>Mis favoritos</h2>
+
+<p *ngIf="(favorites$ | async)?.length === 0">
+  Todavia no marcaste ningun post como favorito. Volve al listado de
+  <a routerLink="/posts">posts</a> y usa la estrella de cada tarjeta.
+</p>
+
+<ul class="favorites-list">
+  <li class="favorite-item" *ngFor="let post of favorites$ | async">
+    <span>{{ post.title | titlecase }}</span>
+    <button type="button" (click)="removeFavorite(post)">Quitar</button>
+  </li>
+</ul>
+
+<button type="button" class="logout-button" (click)="logout()">Cerrar sesion</button>

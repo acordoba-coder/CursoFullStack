@@ -2,6 +2,15 @@
   <h1>Blog Reactivo</h1>
   <nav>
     <a routerLink= "/posts" routerLinkActive="active">Posts</a>
+    <a routerLink="/favoritos" routerLinkActive="active">Favoritos</a>
+
+    <ng-container *ngIf="username$ | async as username; else loggedOut">
+      <span class="session">Hola, {{ username }}</span>
+      <a (click)="logout()">Salir</a>
+    </ng-container>
+    <ng-template #loggedOut>
+      <a routerLink="/login" routerLinkActive="active">Iniciar sesion</a>
+    </ng-template>
   </nav>
 </header>
 

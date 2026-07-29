@@ -1,0 +1,12 @@
+<a routerLink="/posts" class="back-link">&larr; Volver al listado</a>
+
+<ng-container *ngIf="post$ | async as post">
+  <h2>{{ post.title | titlecase }}</h2>
+  <p class="post-body">{{ post.body }}</p>
+
+  <div class="author" *ngIf="author$ | async as author">
+    <h4>Autor</h4>
+    <p>{{ author.name }} &mdash; {{ author.email }}</p>
+    <p>{{ author.company.name | uppercase }}</p>
+  </div>
+</ng-container>

@@ -4,16 +4,21 @@ import { ReactiveFormsModule } from '@angular/forms'
 
 import { PostsRoutingModule } from './posts-routing.module';
 import { PostListComponent } from './post-list/post-list.component';
+import { SharedModule } from '../shared/shared.module';
+import { PostsDetailComponent } from './posts-detail/posts-detail.component';
 
 
 @NgModule({
   declarations: [
-    PostListComponent
+    PostListComponent,
+    PostsDetailComponent
   ],
   imports: [
     CommonModule,
     PostsRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
+
   ]
 })
 export class PostsModule { }
