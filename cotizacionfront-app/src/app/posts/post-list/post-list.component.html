@@ -1,5 +1,8 @@
 <h2>Posts</h2>
-<p>Aqui va el listado de posts (siguientes commits de la clase).</p>
+<label class="search-label">
+  Filtrar por ID de autor (1-10):
+  <input type="number" min="1" max="20" [formControl]="userIdControl" placeholder="Ej: 3">
+</label>
 
 <p *ngIf="loading$ | async">Cargando posts...</p>
 
