@@ -1,2 +1,12 @@
-<app-tomadores></app-tomadores>
-<router-outlet></router-outlet>
+<header class="app-header">
+  <h1>Blog Reactivo</h1>
+  <nav>
+    <a routerLink= "/posts" routerLinkActive="active">Posts</a>
+  </nav>
+</header>
+
+<main class="app-main">
+  <router-outlet></router-outlet>
+</main>
+
+<div class="toast" *ngIf="toastMessage">{{ toastMessage }}</div>

@@ -1,0 +1,11 @@
+<h2>Posts</h2>
+<p>Aqui va el listado de posts (siguientes commits de la clase).</p>
+
+<p *ngIf="loading$ | async">Cargando posts...</p>
+
+<ul class="post-list">
+  <li class="post-item" *ngFor="let post of posts$ | async">
+    <h3>{{ post.title }}</h3>
+    <p>{{ post.body }}</p>
+  </li>
+</ul>
