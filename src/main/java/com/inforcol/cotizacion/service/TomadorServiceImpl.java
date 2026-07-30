@@ -32,7 +32,6 @@ public class TomadorServiceImpl implements TomadorService {
     public TomadorResponseDto create(TomadorRequestDto dto) {
         log.info("Iniciando la creación de un nuevo tomador");
 
-        // Uso del query method existsByEmail para regla de negocio
         if (repository.existsByEmail(dto.getEmail())) {
             log.warn("Intento de registro fallido: El email {} ya existe", dto.getEmail());
             throw new RuntimeException("El correo electrónico ya está registrado");

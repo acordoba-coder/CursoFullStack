@@ -53,7 +53,7 @@ public class TomadorController {
     @PutMapping("/{cc}")
     public ResponseEntity<TomadorResponseDto> update(
             @PathVariable String cc, 
-            @Valid @RequestBody TomadorRequestDto dto) { // <-- ¡@Valid CORREGIDO AQUÍ!
+            @Valid @RequestBody TomadorRequestDto dto) { // 
         
         log.info("TomadorController -> Solicitud para actualizar tomador con CC: {}", cc);
         TomadorResponseDto response = service.update(cc, dto);
