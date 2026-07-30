@@ -13,8 +13,6 @@ import com.inforcol.cotizacion.service.TomadorService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
-
-
 @RestController
 @RequestMapping("/api/tomadores")
 @CrossOrigin(origins = "*")
@@ -27,42 +25,45 @@ public class TomadorController {
         this.service = service;
     }
 
-
     @PostMapping
-    public ResponseEntity<TomadorResponseDto> create(@Valid @RequestBody TomadorRequestDto dto){
-        log.info("TomadorController -> create {}", dto);
-        return new ResponseEntity<>(service.create(dto), HttpStatus.CREATED);
+    public ResponseEntity<TomadorResponseDto> create(@Valid @RequestBody TomadorRequestDto dto) {
+        log.info("TomadorController -> Solicitud para crear tomador: {}", dto.getCcTomador());
+        TomadorResponseDto response = service.create(dto);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<TomadorResponseDto>> list(){
-        log.info("TomadorController -> list {}", service.list());
+    public ResponseEntity<List<TomadorResponseDto>> list() {
+        log.info("TomadorController -> Solicitud para listar todos los tomadores");
         return ResponseEntity.ok(service.list());
     }
 
     @GetMapping("/{cc}")
-    public ResponseEntity<TomadorResponseDto> getById(@PathVariable String cc){
-        log.info("TomadorController -> getById {}", service.getById(cc));
+    public ResponseEntity<TomadorResponseDto> getById(@PathVariable String cc) {
+        log.info("TomadorController -> Solicitud para buscar tomador por CC: {}", cc);
         return ResponseEntity.ok(service.getById(cc));
     }
 
     @GetMapping("/buscar")
-    public ResponseEntity<List<TomadorResponseDto>> buscar(@RequestParam String nombre){
-        log.info("TomadorController -> buscar {}", service.getByNombre(nombre));
+    public ResponseEntity<List<TomadorResponseDto>> buscar(@RequestParam String nombre) {
+        log.info("TomadorController -> Solicitud para buscar tomadores por nombre: {}", nombre);
         return ResponseEntity.ok(service.getByNombre(nombre));
     }
 
     @PutMapping("/{cc}")
-    public ResponseEntity<TomadorResponseDto> update(@Valid @PathVariable String cc, @RequestBody TomadorRequestDto dto){
-        log.info("TomadorController -> update {}", service.update(cc, dto));                                                
-        return ResponseEntity.ok(service.update(cc, dto));
+    public ResponseEntity<TomadorResponseDto> update(
+            @PathVariable String cc, 
+            @Valid @RequestBody TomadorRequestDto dto) { // <-- ¡@Valid CORREGIDO AQUÍ!
+        
+        log.info("TomadorController -> Solicitud para actualizar tomador con CC: {}", cc);
+        TomadorResponseDto response = service.update(cc, dto);
+        return ResponseEntity.ok(response);
     }
 
     @DeleteMapping("/{cc}")
-    public ResponseEntity<Void> delete(@PathVariable String cc){
+    public ResponseEntity<Void> delete(@PathVariable String cc) {
+        log.info("TomadorController -> Solicitud para eliminar tomador con CC: {}", cc);
         service.delete(cc);
-        log.info("TomadorController -> delete {}");
         return ResponseEntity.noContent().build();
     }
-
 }

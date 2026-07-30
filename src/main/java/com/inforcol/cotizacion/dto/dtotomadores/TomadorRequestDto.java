@@ -13,6 +13,10 @@ import lombok.Data;
 public class TomadorRequestDto {
 
     @NotBlank(message = "La cédula es obligatoria")
+    @Pattern(
+        regexp = "^[0-9]{10}$",
+        message = "La cédula debe ser solo numérica y tener 10 dígitos"
+    )
     private String ccTomador;
 
     @NotBlank(message = "El nombre es obligatorio")
